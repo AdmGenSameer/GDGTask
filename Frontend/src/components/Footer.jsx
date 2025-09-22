@@ -1,85 +1,104 @@
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Star } from "lucide-react";
+import { Github, Twitter, Linkedin, Mail } from "lucide-react";
 
 const Footer = () => {
+  const footerLinks = {
+    Product: [
+      { name: "Features", href: "#" },
+      { name: "Pricing", href: "#" },
+      { name: "API", href: "#" },
+      { name: "Documentation", href: "#" },
+      { name: "Changelog", href: "#" }
+    ],
+    Resources: [
+      { name: "Blog", href: "#" },
+      { name: "Help Center", href: "#" },
+      { name: "Tutorials", href: "#" },
+      { name: "Webinars", href: "#" },
+      { name: "Case Studies", href: "#" }
+    ],
+    Company: [
+      { name: "About", href: "#" },
+      { name: "Careers", href: "#" },
+      { name: "Press", href: "#" },
+      { name: "Partners", href: "#" },
+      { name: "Contact", href: "#" }
+    ]
+  };
+
+  const socialLinks = [
+    { name: "GitHub", href: "#", icon: Github },
+    { name: "Twitter", href: "#", icon: Twitter },
+    { name: "LinkedIn", href: "#", icon: Linkedin },
+    { name: "Email", href: "#", icon: Mail }
+  ];
+
   return (
-    <footer className="bg-background border-t border-border py-16">
-      <div className="container mx-auto px-4">
-        <div className="grid lg:grid-cols-4 gap-8">
-          {/* Logo and Newsletter */}
-          <div className="lg:col-span-1 space-y-6">
-            <div className="flex items-center space-x-2">
+    <footer className="bg-card border-t border-border">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-8">
+          {/* Brand */}
+          <div className="lg:col-span-2">
+            <div className="flex items-center space-x-2 mb-4">
               <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-                <div className="w-4 h-4 bg-white rounded-sm"></div>
+                <span className="text-primary-foreground font-bold text-sm">A</span>
               </div>
-              <span className="font-bold text-xl">Optimize AI</span>
+              <span className="text-xl font-bold text-foreground">AutomateAI</span>
             </div>
+            <p className="text-muted-foreground mb-6 max-w-md">
+              Supercharge your business with AI-powered automation. Transform operations, 
+              boost efficiency, and scale with confidence.
+            </p>
             
-            <div className="flex items-center space-x-1">
-              {Array.from({ length: 5 }).map((_, i) => (
-                <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
+            {/* Social Links */}
+            <div className="flex space-x-4">
+              {socialLinks.map((social) => (
+                <a
+                  key={social.name}
+                  href={social.href}
+                  className="w-10 h-10 bg-secondary/50 rounded-lg flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-primary/10 transition-smooth"
+                  aria-label={social.name}
+                >
+                  <social.icon className="w-5 h-5" />
+                </a>
               ))}
             </div>
-            
-            <div className="space-y-4">
-              <h3 className="font-semibold">Newsletter Section</h3>
-              <p className="text-sm text-muted-foreground">
-                Subscribe & get a promotion. Always stay tuned
-              </p>
-              <div className="flex space-x-2">
-                <Input 
-                  placeholder="Email Address" 
-                  className="flex-1"
-                />
-                <Button className="bg-primary hover:bg-primary/90 text-primary-foreground">
-                  Subscribe
-                </Button>
-              </div>
-            </div>
           </div>
-          
-          {/* Product Links */}
-          <div className="space-y-4">
-            <h3 className="font-semibold">Product</h3>
-            <div className="space-y-2">
-              <a href="#" className="block text-sm text-muted-foreground hover:text-foreground transition-colors">Features Overview</a>
-              <a href="#" className="block text-sm text-muted-foreground hover:text-foreground transition-colors">Pricing Plans</a>
-              <a href="#" className="block text-sm text-muted-foreground hover:text-foreground transition-colors">Integrations</a>
-              <a href="#" className="block text-sm text-muted-foreground hover:text-foreground transition-colors">Security & Compliance</a>
-              <a href="#" className="block text-sm text-muted-foreground hover:text-foreground transition-colors">Product Updates</a>
+
+          {/* Footer Links */}
+          {Object.entries(footerLinks).map(([category, links]) => (
+            <div key={category}>
+              <h3 className="font-semibold text-foreground mb-4">{category}</h3>
+              <ul className="space-y-3">
+                {links.map((link) => (
+                  <li key={link.name}>
+                    <a 
+                      href={link.href}
+                      className="text-muted-foreground hover:text-foreground transition-smooth"
+                    >
+                      {link.name}
+                    </a>
+                  </li>
+                ))}
+              </ul>
             </div>
-          </div>
-          
-          {/* Resources Links */}
-          <div className="space-y-4">
-            <h3 className="font-semibold">Resources</h3>
-            <div className="space-y-2">
-              <a href="#" className="block text-sm text-muted-foreground hover:text-foreground transition-colors">Blog</a>
-              <a href="#" className="block text-sm text-muted-foreground hover:text-foreground transition-colors">Case Studies</a>
-              <a href="#" className="block text-sm text-muted-foreground hover:text-foreground transition-colors">Help Center</a>
-              <a href="#" className="block text-sm text-muted-foreground hover:text-foreground transition-colors">API Documentation</a>
-              <a href="#" className="block text-sm text-muted-foreground hover:text-foreground transition-colors">Community Forum</a>
-            </div>
-          </div>
-          
-          {/* Company Links */}
-          <div className="space-y-4">
-            <h3 className="font-semibold">Company</h3>
-            <div className="space-y-2">
-              <a href="#" className="block text-sm text-muted-foreground hover:text-foreground transition-colors">About Us</a>
-              <a href="#" className="block text-sm text-muted-foreground hover:text-foreground transition-colors">Careers</a>
-              <a href="#" className="block text-sm text-muted-foreground hover:text-foreground transition-colors">Press & Media</a>
-              <a href="#" className="block text-sm text-muted-foreground hover:text-foreground transition-colors">Partners</a>
-              <a href="#" className="block text-sm text-muted-foreground hover:text-foreground transition-colors">Contact</a>
-            </div>
-          </div>
+          ))}
         </div>
-        
+
         <div className="border-t border-border mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-sm text-muted-foreground">
-            Copyright 2024 &nbsp;&nbsp; Privacy Policy &nbsp;&nbsp; Terms & Conditions &nbsp;&nbsp; All rights reserved.
+          <p className="text-muted-foreground text-sm">
+            © 2024 AutomateAI. All rights reserved.
           </p>
+          <div className="flex space-x-6 mt-4 md:mt-0">
+            <a href="#" className="text-muted-foreground hover:text-foreground text-sm transition-smooth">
+              Privacy Policy
+            </a>
+            <a href="#" className="text-muted-foreground hover:text-foreground text-sm transition-smooth">
+              Terms of Service
+            </a>
+            <a href="#" className="text-muted-foreground hover:text-foreground text-sm transition-smooth">
+              Cookie Policy
+            </a>
+          </div>
         </div>
       </div>
     </footer>
